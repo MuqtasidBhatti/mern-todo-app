@@ -16,17 +16,17 @@ const Dashboard = () => {
     useEffect(() => {
         if (!token) { navigate('/login'); return }
 
-        fetch("http://localhost:5000/api/users/profile", {
+        fetch(`${import.meta.env.VITE_API_URL}/api/users/profile`, {
             headers: { Authorization: `Bearer ${token}` }
         }).then(res => res.json()).then(data => setUser(data.user))
 
-        fetch("http://localhost:5000/api/tasks", {
+        fetch(`${import.meta.env.VITE_API_URL}/api/tasks`, {
             headers: { Authorization: `Bearer ${token}` }
         }).then(res => res.json()).then(data => setTasks(data.tasks))
     }, [])
 
     const addTask = async () => {
-        const res = await fetch('http://localhost:5000/api/tasks', {
+        const res = await fetch(`${import.meta.env.VITE_API_URL}/api/tasks`, {
             method: "POST",
             headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
             body: JSON.stringify(form)
@@ -39,7 +39,7 @@ const Dashboard = () => {
     }
 
     const updateTask = async (id) => {
-        const res = await fetch(`http://localhost:5000/api/tasks/${id}`, {
+        const res = await fetch(`${import.meta.env.VITE_API_URL}/api/tasks/${id}`, {
             method: "PUT",
             headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
             body: JSON.stringify(editForm)
@@ -50,7 +50,7 @@ const Dashboard = () => {
     }
 
     const deleteTask = async (id) => {
-        await fetch(`http://localhost:5000/api/tasks/${id}`, {
+        await fetch(`${import.meta.env.VITE_API_URL}/api/tasks/${id}`, {
             method: "DELETE",
             headers: { Authorization: `Bearer ${token}` }
         })
@@ -59,7 +59,7 @@ const Dashboard = () => {
 
     const toggleComplete = async (id) => {
         const task = tasks.find(task => task._id === id)
-        const res = await fetch(`http://localhost:5000/api/tasks/${id}`, {
+        const res = await fetch(`${import.meta.env.VITE_API_URL}/api/tasks/${id}`, {
             method: "PUT",
             headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
             body: JSON.stringify({ completed: !task.completed })
