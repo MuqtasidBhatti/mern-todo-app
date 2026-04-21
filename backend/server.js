@@ -16,7 +16,4 @@ const taskRoutes = require('./routes/taskRoutes')
 app.use('/api/tasks', taskRoutes)
 
 
-const PORT = process.env.PORT
-app.listen(PORT, () => {
-    console.log(`Server is running on localhost:${PORT}`)
-})
+module.exports = app
