@@ -26,6 +26,7 @@ const Dashboard = () => {
     }, [])
 
     const addTask = async () => {
+        if (!form.title || !form.content) { setError("Please fill in the both fields"); return }
         const res = await fetch(`${import.meta.env.VITE_API_URL}/api/tasks`, {
             method: "POST",
             headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
@@ -195,13 +196,13 @@ const Dashboard = () => {
                                                 {task.content}
                                             </p>
                                             <p className="text-zinc-600 text-xs mt-2">
-                                            {new Date(task.createdAt).toLocaleDateString(`en-us`, {
-                                                year: "numeric",
-                                                month: "short",
-                                                day: "numeric"
-                                            })}
-                                        </p>
-                                            
+                                                {new Date(task.createdAt).toLocaleDateString(`en-us`, {
+                                                    year: "numeric",
+                                                    month: "short",
+                                                    day: "numeric"
+                                                })}
+                                            </p>
+
                                         </div>
 
                                         {/* Complete Toggle */}
@@ -215,10 +216,10 @@ const Dashboard = () => {
                                                 </svg>
                                             )}
                                         </button>
-                                        
-                                        
+
+
                                     </div>
-                                            
+
                                     {/* Actions */}
                                     <div className="flex gap-2">
                                         <button

@@ -8,6 +8,10 @@ const Login = () => {
     const navigate = useNavigate()
 
     const handleLogin = async () => {
+        if(!form.email || !form.password) {
+            setError("Please fill in the fields")
+            return
+        }
         const res = await fetch(`${import.meta.env.VITE_API_URL}/api/users/login`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },

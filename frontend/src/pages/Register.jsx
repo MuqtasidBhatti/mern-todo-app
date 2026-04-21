@@ -4,16 +4,21 @@ import { useNavigate } from 'react-router-dom'
 
 const Register = () => {
     const [form, setForm] = useState({ name: "", email: "", password: "" })
+    const [error, setError] = useState("")
     const navigate = useNavigate()
 
     const handleSubmit = async () => {
+        if(!form || !form.email || !form.password) {
+            setError("Please fill in all fields")
+            return
+        }
         const res = await fetch(`${import.meta.env.VITE_API_URL}/api/users/register`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(form)
         })
         const data = await res.json()
-        console.log(data)
+        if(!res.ok) {setError(data.message || "Registration failed"); return}
         navigate('/login')
     }
 
