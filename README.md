@@ -6,6 +6,13 @@ A full-stack todo application built with the MERN stack. Users can register, log
 
 [https://mern-todo-app-jade.vercel.app](https://mern-todo-app-jade.vercel.app)
 
+
+## Screenshots
+
+![Dashboard](./screenshots/dashboard.png)
+![Login](./screenshots/login.png)
+
+
 ## Features
 
 - User registration and login with JWT authentication
