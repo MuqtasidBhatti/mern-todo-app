@@ -5,11 +5,12 @@ const taskSchema = new mongoose.Schema({
         type: String,
         required: true,
         minLength: 2,
-        maxLength: 20
+        maxLength: 100
     },
     content: {
         type: String,
         required: true,
+        maxlength: 500 
 
     },
     user: {

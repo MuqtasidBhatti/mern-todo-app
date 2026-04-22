@@ -27,6 +27,8 @@ const Dashboard = () => {
 
     const addTask = async () => {
         if (!form.title || !form.content) { setError("Please fill in the both fields"); return }
+        if (form.title.length > 100) { setError("Title is too long"); return }
+    if (form.content.length > 500) { setError("Content is too long"); return }
         const res = await fetch(`${import.meta.env.VITE_API_URL}/api/tasks`, {
             method: "POST",
             headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
